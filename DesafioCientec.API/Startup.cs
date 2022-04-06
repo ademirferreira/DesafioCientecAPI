@@ -11,6 +11,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DesafioCientec.Data.Context;
+using Microsoft.EntityFrameworkCore;
 
 namespace DesafioCientec.API
 {
@@ -28,6 +30,8 @@ namespace DesafioCientec.API
         {
 
             services.AddControllers();
+            services.AddDbContext<FundacaoContext>(options =>
+                options.UseSqlServer(Configuration.GetConnectionString("DefaultConnection")));
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "DesafioCientec.API", Version = "v1" });
