@@ -18,8 +18,6 @@ namespace DesafioCientec.Data.Context
                 .IsRequired()
                 .HasColumnType("varchar(400)");
 
-            modelBuilder.Entity<Fundacao>().HasIndex(f => new { f.Documento }).IsUnique();
-
             modelBuilder.Entity<Fundacao>()
                 .Property(f => f.Documento)
                 .IsRequired()

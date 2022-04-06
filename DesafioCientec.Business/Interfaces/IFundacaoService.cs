@@ -4,7 +4,7 @@ using DesafioCientec.Business.Models;
 
 namespace DesafioCientec.Business.Interfaces
 {
-    public interface IFundacaoService
+    public interface IFundacaoService : IDisposable
     {
         Task<bool> Adicionar(Fundacao fundacao);
         Task<bool> Atualizar(Fundacao fundacao);

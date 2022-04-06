@@ -6,11 +6,11 @@ using DesafioCientec.Business.Models;
 
 namespace DesafioCientec.Business.Services
 {
-    public class FundacaoService : IFundacaoService
+    public class FundacaoService : BaseService, IFundacaoService
     {
         private readonly IFundacaoRepository _fundacaoRepository;
 
-        public FundacaoService(IFundacaoRepository fundacaoRepository)
+        public FundacaoService(IFundacaoRepository fundacaoRepository, INotificador notificador) : base(notificador)
         {
             _fundacaoRepository = fundacaoRepository;
         }
@@ -19,6 +19,7 @@ namespace DesafioCientec.Business.Services
         {
             if (_fundacaoRepository.Buscar(f => f.Documento == fundacao.Documento).Result.Any())
             {
+                Notificar("Já existe uma fundação com esse documento");
                 return false;
             }
 
@@ -30,6 +31,7 @@ namespace DesafioCientec.Business.Services
         {
             if (_fundacaoRepository.Buscar(f => f.Documento == fundacao.Documento && f.Id != fundacao.Id).Result.Any())
             {
+                Notificar("Já existe um fornecedor com este documento informado.");
                 return false;
             }
             await _fundacaoRepository.Atualizar(fundacao);

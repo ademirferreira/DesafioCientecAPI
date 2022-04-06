@@ -31,6 +31,7 @@ namespace DesafioCientec.Data.Repository
             return await DbSet.FindAsync(id);
         }
 
+
         public virtual async Task<List<TEntity>> ObterTodos()
         {
             return await DbSet.ToListAsync();
